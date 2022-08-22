@@ -25,7 +25,6 @@ Polynomial& Polynomial::operator+(const Polynomial& polynomial) const
             if (coefficients[i])
                 result->actualDegree = i;
         }
-
     }
     else {
         for (; i <= higherDegree; i++) {
@@ -42,6 +41,7 @@ Polynomial& Polynomial::operator-(const Polynomial& polynomial) const
     int higherDegree = this->potentialDegree > polynomial.potentialDegree ? this->potentialDegree : polynomial.potentialDegree;
     int lowerDegree = this->potentialDegree < polynomial.potentialDegree ? this->potentialDegree : polynomial.potentialDegree;
     Polynomial* result = new Polynomial(higherDegree);
+    result->actualDegree = this->actualDegree > polynomial.actualDegree ? this->actualDegree : polynomial.actualDegree;
     int i = 0;
     for (; i <= lowerDegree; i++)
         result->coefficients[i] = this->coefficients[i] - polynomial.coefficients[i];
@@ -59,14 +59,12 @@ Polynomial& Polynomial::operator-(const Polynomial& polynomial) const
 Polynomial& Polynomial::operator*(const Polynomial& polynomial) const
 {
     Polynomial* result = new Polynomial(this->potentialDegree +polynomial.potentialDegree);
+    result->actualDegree = actualDegree + polynomial.actualDegree;
+    if (result->actualDegree > maxDegree)
+        maxDegree = result->actualDegree;
     for (int i = 0; i <= potentialDegree; i++) {
         for (int j = 0; j <= polynomial.potentialDegree; j++) {
             result->coefficients[i + j] += coefficients[i]*polynomial.coefficients[j];
-            if (result->coefficients[i + j]) {
-                result->actualDegree = i + j;
-                if(i+j>maxDegree)
-                    Polynomial::maxDegree = i+j;
-            }
         }
     }
     return *result;
@@ -87,7 +85,7 @@ void Polynomial::operator*=(const Polynomial& polynomial)
     *this = (*this) * polynomial;
 }
 
-double& Polynomial::operator[](int index)
+const double Polynomial::operator[](int index)
 {
     if (index > potentialDegree || index < 0)
         exit(0);
@@ -172,11 +170,7 @@ int Polynomial::getDegree(bool flag) const
     if (!flag) {
         return potentialDegree;
     }
-    for (int i = potentialDegree; i >= 0; i--) {
-        if (this->coefficients[i] > 0)
-            return i;
-    }
-    return 0;
+    return actualDegree;
 }
 
 int Polynomial::getMaxDegree()
@@ -208,11 +202,11 @@ void Polynomial::print() const
                 }
             }
             else if (coefficients[i] > 0 && monomPrints) {
-                cout << "+" << coefficients[i] << "X^" << i;
+                cout << "+(" << coefficients[i] << ")*X^" << i;
                 monomPrints++;
             }
             else {
-                cout << coefficients[i] << "X^" << i;
+                cout << "-(" << coefficients[i]*(-1) << ")*X^" << i;
                 monomPrints++;
             }
         }
@@ -241,12 +235,12 @@ ostream& operator<<(ostream& output, const Polynomial& polynomial)
                     monomPrints++;
                 }
             }
-            else if (polynomial.coefficients[i] > 0 && monomPrints) {
-                output << "+" << "(" << polynomial.coefficients[i]<<")*" << "X^" << i;
+            else if (polynomial.coefficients[i] >= 0 && monomPrints) {
+                output << "+(" << polynomial.coefficients[i] << ")*X^" << i;
                 monomPrints++;
             }
             else {
-                output<<"+"<< "(" << polynomial.coefficients[i] << ")*" << "X^" << i;
+                output << "-(" << polynomial.coefficients[i]*(-1) << ")*X^" << i;
                 monomPrints++;
             }
         }
