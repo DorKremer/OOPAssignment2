@@ -21,7 +21,7 @@ public:
 	void operator+=(const Polynomial& polynomial);
 	void operator-=(const Polynomial& polynomial);
 	void operator*=(const Polynomial& polynomial);
-	double& operator[](int index);
+	const double operator[](int index);
 	double& operator[](int index) const;
 	friend Polynomial& operator*(const double& num, const Polynomial& polynomial);
 	friend ostream& operator<<(ostream& output, const Polynomial& polynomial);
