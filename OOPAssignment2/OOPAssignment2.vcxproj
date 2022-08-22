@@ -127,13 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\OOP2\OOP2\Main.cpp" />
-    <ClCompile Include="..\..\OOP2\OOP2\Polynomial.cpp" />
-    <ClCompile Include="..\..\OOP2\OOP2\Rational.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Polynomial.cpp" />
+    <ClCompile Include="Rational.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\OOP2\OOP2\Polynomial.h" />
-    <ClInclude Include="..\..\OOP2\OOP2\Rational.h" />
+    <ClInclude Include="Polynomial.h" />
+    <ClInclude Include="Rational.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
