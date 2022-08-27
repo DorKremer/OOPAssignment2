@@ -2,9 +2,11 @@
 #include <iostream>
 
 using namespace std;
+
 class Polynomial
 {
 public:
+
 	Polynomial();
 	Polynomial(int degree);
 	Polynomial(double* coefficients, int degree);

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{20440121-4274-4b98-9365-8041ba3609ea}</ProjectGuid>
-    <RootNamespace>OOPAssignment2</RootNamespace>
+    <ProjectGuid>{45669440-1708-491b-8674-0f549fc5f013}</ProjectGuid>
+    <RootNamespace>OOP2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,6 +70,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -127,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Polynomial.cpp" />
-    <ClCompile Include="Rational.cpp" />
+    <ClInclude Include="..\..\OOP1\OOP1\Polynomial.h" />
+    <ClInclude Include="..\..\OOP1\OOP1\Rational.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Polynomial.h" />
-    <ClInclude Include="Rational.h" />
+    <ClCompile Include="..\..\OOP1\OOP1\Main.cpp" />
+    <ClCompile Include="..\..\OOP1\OOP1\Polynomial.cpp" />
+    <ClCompile Include="..\..\OOP1\OOP1\Rational.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
